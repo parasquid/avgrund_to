@@ -1,0 +1,40 @@
+= AvgrundTo
+
+Wraps hakim's awesome Avgrund reimagining of the modal window into a Rails Engine.
+
+I've had to make a few adjustments to make it work with scrollable content (the original sets the body to overflow:hideden, preventing scrolling).
+
+To use, you'll have to add the class "avgrund-contents" to the block container you'd like to blur (usually the div that's the immediate child of body).
+
+Then you'll need to require avgrund in application.js
+
+    //= require avgrund_to/modal
+    //= require avgrund_to/avgrund
+
+Same with your application.css
+
+    *= require avgrund
+
+Then you'll need to render the partial for the modal in your layout file
+
+    <%= render 'avgrund_to/modal' %>
+
+Then you just use the helper method avgrund_to the same way you'd use link_to
+
+    <%= avgrund_to 'Edit', shipment, {:class=>'btn btn-primary'}, "Edit Shipment #{shipment.order_number.upcase}" %>
+
+You'll need to edit your controller to accept the .text format (behavior inherited from isieo's modal-me Rails Engine, from which this gem was inspired)
+
+    def show
+      @shipment = Shipment.unscoped.find(params[:id].downcase)
+
+      respond_to do |format|
+        format.html # show.html.erb
+        format.json { render json: @shipment }
+        format.text { render 'show', formats: [:html], layout: false }
+      end
+    end
+
+And that's it :)
+
+The gem is very rough and raw, and I'm sure there are lots of ways to improve it (it's yet another modal window plugin after all). Suggestions and feedback are welcome, please use the Issue Tracker for them.
