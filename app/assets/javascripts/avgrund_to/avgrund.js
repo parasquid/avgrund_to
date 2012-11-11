@@ -13,7 +13,7 @@ jQuery(function(){
     currentState = null;
     
     //Added draggable popup
-    $( ".avgrund-popup" ).draggable({ cursor: "move" });
+    //$( ".avgrund-popup" ).draggable({ cursor: "move" });
 
   container.className = container.className.replace( /\s+$/gi, '' ) + ' avgrund-ready';
 
@@ -73,4 +73,4 @@ jQuery(function(){
     disableBlur: disableBlur
   }
 
-})();
+});
