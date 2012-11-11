@@ -53,6 +53,7 @@ jQuery(function(){
     document.removeEventListener( 'click', onDocumentClick, false );
 
     removeClass( container, 'avgrund-active' );
+    jQuery('.modal-body').html('<div id=\"spinner\"><\/div>')
   }
 
   function disableBlur() {
